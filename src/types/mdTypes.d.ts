@@ -7,4 +7,6 @@ export interface IMarkdown {
 export type MarkdownContextType = {
     markdowns: IMarkdown[]
     saveMarkdown: (markdown: IMarkdown) => void
+    markdown: string
+    setMarkdown: (value: string) => void
 }

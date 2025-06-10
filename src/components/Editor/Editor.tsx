@@ -1,11 +1,11 @@
 import { useState } from "react";
-// import { useMarkdown } from "../../context/markdownContext";
+import { useMarkdown } from "../../context/markdownContext";
 // import type { IMarkdown } from "../../types/mdTypes";
 import TitleBar from "../Title-Bar/Title-Bar";
 
 const Editor = () => {
     // const markdownContext = useMarkdown()
-    const [markdown, setMarkdown] = useState<string>("")
+    const { markdown, setMarkdown } = useMarkdown()!
     const [words, setWords] = useState(0)
     const [chars, setChars] = useState(0)
 

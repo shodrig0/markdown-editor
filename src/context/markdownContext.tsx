@@ -4,7 +4,8 @@ import type { MarkdownContextType, IMarkdown } from "../types/mdTypes"
 export const MarkdownContext = React.createContext<MarkdownContextType | null>(null)
 
 const MarkdownProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [markdowns, setMarkdown] = React.useState<IMarkdown[]>([])
+    const [markdowns, setMarkdowns] = React.useState<IMarkdown[]>([])
+    const [markdown, setMarkdown] = React.useState<string>("")
 
     const saveMarkdown = (markdown: IMarkdown) => {
         const newMarkdown: IMarkdown = {
@@ -12,10 +13,10 @@ const MarkdownProvider: React.FC<{ children: React.ReactNode }> = ({ children })
             title: markdown.title,
             content: markdown.content
         }
-        setMarkdown([...markdowns, newMarkdown])
+        setMarkdowns([...markdowns, newMarkdown])
     }
 
-    return <MarkdownContext.Provider value={{ markdowns, saveMarkdown }}>{children}</MarkdownContext.Provider>
+    return <MarkdownContext.Provider value={{ markdowns, saveMarkdown, markdown, setMarkdown }}>{children}</MarkdownContext.Provider>
 }
 
 export const useMarkdown = () => React.useContext(MarkdownContext)
