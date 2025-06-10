@@ -6,6 +6,7 @@ import TitleBar from "../Title-Bar/Title-Bar";
 const Editor = () => {
     // const markdownContext = useMarkdown()
     const { markdown, setMarkdown } = useMarkdown()!
+
     const [words, setWords] = useState(0)
     const [chars, setChars] = useState(0)
 
@@ -36,10 +37,10 @@ const Editor = () => {
     }
 
     return (
-        <div>
+        <div >
             <TitleBar title="Editor" asideTxt={`${words} words ${chars} characters`} />
             <textarea value={markdown} onChange={editMarkdown} />
-            <button onClick={downloadFile}>Download md</button>
+            <button className="bg-blue-500 md:bg-green-500" onClick={downloadFile}>Download md</button>
         </div>
     )
 }
