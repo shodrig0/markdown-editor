@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from "react"
-import styles from "./Main-Loyout.module.css"
+import styles from "./Main-Layout.module.css"
 
 
 type Props = {

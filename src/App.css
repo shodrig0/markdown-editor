@@ -111,3 +111,30 @@ hr {
 .mb-2 {
     margin-bottom: 0.5rem;
 }
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    body {
+        font-size: 15px;
+    }
+
+    button {
+        padding: 0.5em 1em;
+        font-size: 1em;
+    }
+
+    .mb-2 {
+        margin-bottom: 0.3rem;
+    }
+}

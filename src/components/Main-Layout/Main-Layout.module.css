@@ -1,0 +1,38 @@
+.mainLayout {
+    display: flex;
+    height: 100vh;
+    gap: 2rem;
+}
+
+.mainLayout__col {
+    flex: 1;
+    padding: 2rem 1.5rem;
+    background: var(--darkest);
+    border-radius: 1rem;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainLayout__col:not(:last-child) {
+    border-right: 3px solid var(--darkest);
+}
+
+@media (max-width: 900px) {
+    .mainLayout {
+        flex-direction: column;
+        gap: 1.5rem;
+        height: auto;
+        padding: 1rem 0.5rem;
+    }
+
+    .mainLayout__col {
+        padding: 1.2rem 0.8rem;
+        border-radius: 0.8rem;
+    }
+
+    .mainLayout__col:not(:last-child) {
+        border-right: none;
+        border-bottom: 3px solid var(--dark);
+    }
+}
