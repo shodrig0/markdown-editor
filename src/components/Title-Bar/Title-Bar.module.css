@@ -1,0 +1,9 @@
+.titleBar__wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mb4 {
+    margin-bottom: 1.5rem;
+}

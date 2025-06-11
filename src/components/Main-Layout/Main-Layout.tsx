@@ -1,4 +1,6 @@
 import type { FC, ReactNode } from "react"
+import styles from "./Main-Loyout.module.css"
+
 
 type Props = {
     children: ReactNode
@@ -11,7 +13,7 @@ type MainLayoutComponent = FC<Props> & {
 
 const MainLayout: MainLayoutComponent = ({ children }) => {
     return (
-        <div>
+        <div className={styles.mainLayout}>
             {children}
         </div>
     )
@@ -19,7 +21,7 @@ const MainLayout: MainLayoutComponent = ({ children }) => {
 
 const Column: FC<Props> = ({ children }) => {
     return (
-        <div>
+        <div className={styles.mainLayout__col}>
             {children}
         </div>
     )

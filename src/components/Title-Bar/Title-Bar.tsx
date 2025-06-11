@@ -1,3 +1,5 @@
+import styles from "./Title-Bar.module.css"
+
 type Props = {
     title: string
     asideTxt: string
@@ -5,8 +7,8 @@ type Props = {
 
 const TitleBar: React.FC<Props> = ({ title, asideTxt }) => {
     return (
-        <div>
-            <div>
+        <div className={styles.mb4}>
+            <div className={styles.titleBar__wrap}>
                 {title && <h5>{title}</h5>}
                 {asideTxt && <h5>{asideTxt}</h5>}
             </div>

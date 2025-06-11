@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { useMarkdown } from "../../context/markdownContext";
+import { useState } from "react"
+import { useMarkdown } from "../../context/markdownContext"
 // import type { IMarkdown } from "../../types/mdTypes";
-import TitleBar from "../Title-Bar/Title-Bar";
+import TitleBar from "../Title-Bar/Title-Bar"
+import styles from "./Editor.module.css"
 
 const Editor = () => {
     // const markdownContext = useMarkdown()
@@ -37,10 +38,10 @@ const Editor = () => {
     }
 
     return (
-        <div >
+        <div className={styles.editor__wrap}>
             <TitleBar title="Editor" asideTxt={`${words} words ${chars} characters`} />
-            <textarea value={markdown} onChange={editMarkdown} />
-            <button className="bg-blue-500 md:bg-green-500" onClick={downloadFile}>Download md</button>
+            <textarea className={styles.editor} value={markdown} onChange={editMarkdown} />
+            <button onClick={downloadFile}>Download md</button>
         </div>
     )
 }
