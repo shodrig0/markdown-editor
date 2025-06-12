@@ -1,5 +1,5 @@
 import * as React from "react"
-import type { MarkdownContextType, IMarkdown } from "../types/mdTypes"
+import type { MarkdownContextType, IMarkdown } from "../utils/mdTypes"
 
 export const MarkdownContext = React.createContext<MarkdownContextType | null>(null)
 

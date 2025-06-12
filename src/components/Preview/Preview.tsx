@@ -1,8 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useMarkdown } from '../../context/markdownContext'
 import ReactMarkdown from 'react-markdown'
-import TitleBar from '../Title-Bar/Title-Bar'
-import style from './Preview.module.css'
 
 
 const Preview = () => {
@@ -21,11 +19,15 @@ const Preview = () => {
     }, [markdown])
 
     return (
-        <div className={style.preview} >
-            <TitleBar title='Preview' asideTxt='' />
-            <div className={style.preview__scroll} ref={automaticScroll}>
-                <ReactMarkdown>{markdown}</ReactMarkdown>
+        <div className="flex-1 flex flex-col bg-gray-900">
+            <div className="border-b border-gray-700 p-4">
+                <h3 className="font-medium text-gray-200">Preview</h3>
             </div>
+            <div className="flex-1 p-4 overflow-auto">
+                <div className="prose prose-sm prose-invert max-w-none">
+                    <ReactMarkdown>{markdown}</ReactMarkdown>
+                </div>
+            </div >
         </div>
     )
 
