@@ -12,7 +12,7 @@ const sampleData: FileNode[] = [
                 name: "Primer intento",
                 type: "folder",
                 children: [
-                    { id: "readme-1", name: "README.md", type: "file", extension: "md" }
+                    { id: "readme-1", name: "README", type: "file", extension: "md" }
                 ],
             },
         ]
@@ -37,7 +37,7 @@ const Sidebar = ({
                     key={node.id}
                     node={node}
                     onFileSelect={onFileSelect ?? (() => { })}
-                    selectedFile={selectedFile}
+                    selectedFile={selectedFile || null}
                     onRename={onRename}
                     nodeId={node.id}
                     level={0}
@@ -47,8 +47,6 @@ const Sidebar = ({
     )
 }
 
-/**
- * por que no anda
- */
+
 
 export default Sidebar

@@ -20,7 +20,7 @@ const Explorer = () => {
                     name: "Primer intento",
                     type: "folder",
                     children: [
-                        { id: "readme-1", name: "README.md", type: "file", extension: "md" }
+                        { id: "readme-1", name: "README", type: "file", extension: "md" }
                     ],
                 },
             ]
