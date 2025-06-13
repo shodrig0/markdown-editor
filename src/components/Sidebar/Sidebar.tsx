@@ -3,14 +3,16 @@ import TreeNode from "../TreeNode/TreeNode"
 
 const sampleData: FileNode[] = [
     {
+        id: "docs-1",
         name: "Docs",
         type: "folder",
         children: [
             {
+                id: "primer-intento-1",
                 name: "Primer intento",
                 type: "folder",
                 children: [
-                    { name: "README.md", type: "file", extension: "md" }
+                    { id: "readme-1", name: "README.md", type: "file", extension: "md" }
                 ],
             },
         ]
@@ -22,7 +24,6 @@ interface SidebarProps extends FileTreeProps {
 }
 
 
-
 const Sidebar = ({
     data = sampleData,
     onFileSelect,
@@ -31,19 +32,23 @@ const Sidebar = ({
 }: SidebarProps) => {
     return (
         <div className="w-full">
-            {data.map((node, index) => (
+            {data.map((node) => (
                 <TreeNode
-                    key={`${node.name}-${index}`}
+                    key={node.id}
                     node={node}
                     onFileSelect={onFileSelect ?? (() => { })}
-                    selectedFile={selectedFile || null}
+                    selectedFile={selectedFile}
                     onRename={onRename}
-                    nodeId={`${node.name}-${index}`}
+                    nodeId={node.id}
                     level={0}
                 />
             ))}
         </div>
     )
 }
+
+/**
+ * por que no anda
+ */
 
 export default Sidebar

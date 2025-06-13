@@ -9,7 +9,7 @@ export interface FileNode {
 export interface FileTreeProps {
     data?: FileNode[]
     onFileSelect?: (file: FileNode) => void
-    selectedFile?: string
+    selectedFile?: FileNode | null
 }
 
 export interface TreeNodeProps {

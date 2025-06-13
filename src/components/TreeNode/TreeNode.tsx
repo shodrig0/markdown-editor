@@ -17,6 +17,7 @@ const getFileIcon = (extension?: string) => {
     }
 }
 
+
 const TreeNode = ({
     node,
     level = 0,
@@ -26,7 +27,7 @@ const TreeNode = ({
     nodeId
 }: TreeNodeProps) => {
     const [isOpen, setIsOpen] = React.useState(level < 2)
-    const isSelected = selectedFile?.name === node.name
+    const isSelected = selectedFile?.id === node.id
 
     if (node.type === "file") {
         return (

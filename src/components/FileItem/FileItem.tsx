@@ -1,4 +1,8 @@
-import { useState } from "react";
+import { useState } from "react"
+
+/**
+ * is it necessary?
+ */
 
 type Props = {
     name: string
