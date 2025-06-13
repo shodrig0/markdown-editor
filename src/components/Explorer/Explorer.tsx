@@ -3,34 +3,61 @@ import { useMarkdown } from "../../context/markdownContext"
 import type { FileNode } from "../../utils/fileNode"
 import Sidebar from "../Sidebar/Sidebar"
 
+const FILE_IN_TREE = "markdown-editor-file-tree"
+const CONTENT_FILE = "markdown-editor-content-"
+
+const initialFileTree: FileNode[] = [
+    {
+        id: "docs-1",
+        name: "Docs",
+        type: "folder",
+        children: [
+            {
+                id: "primer-intento-1",
+                name: "Primer intento",
+                type: "folder",
+                children: [
+                    { id: "readme-1", name: "README", type: "file", extension: "md" }
+                ],
+            },
+        ]
+    }
+]
+
+const initialContent = {
+    "readme-1": "# README\n\nBienvenido a tu editor de Markdown!"
+}
+
 const Explorer = () => {
 
-    const { setMarkdown } = useMarkdown()!
+    const { markdown, setMarkdown } = useMarkdown()!
 
     const [selectedFile, setSelectedFile] = React.useState<FileNode | null>(null)
 
-    const [fileTree, setFileTree] = React.useState<FileNode[]>([
-        {
-            id: "docs-1",
-            name: "Docs",
-            type: "folder",
-            children: [
-                {
-                    id: "primer-intento-1",
-                    name: "Primer intento",
-                    type: "folder",
-                    children: [
-                        { id: "readme-1", name: "README", type: "file", extension: "md" }
-                    ],
-                },
-            ]
+    const [fileTree, setFileTree] = React.useState<FileNode[]>(() => {
+        const savedFileTree = localStorage.getItem(FILE_IN_TREE)
+        return savedFileTree ? JSON.parse(savedFileTree) : initialFileTree
+    })
+
+    React.useEffect(() => {
+        localStorage.setItem(FILE_IN_TREE, JSON.stringify(fileTree))
+    }, [fileTree])
+
+
+    React.useEffect(() => {
+        if (selectedFile?.id && selectedFile.type === "file") {
+            localStorage.setItem(CONTENT_FILE + selectedFile.id, markdown)
         }
-    ])
+    }, [markdown, selectedFile])
 
     const handleFileSelect = (file: FileNode) => {
         if (file.type === "file") {
             setSelectedFile(file)
-            setMarkdown(`# ${file.name}\n\nAcá debería ir el contenido ${file.name} o la nota que el usuario cree`)
+            const savedContent = localStorage.getItem(CONTENT_FILE + file.id)
+            const content = savedContent || initialContent[file.id as keyof typeof initialContent] ||
+                `# ${file.name}\n\nAcá debería ir el contenido de ${file.name} o lo que el usuario cree`
+
+            setMarkdown(content)
         }
     }
 
