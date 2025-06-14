@@ -82,6 +82,40 @@ const Explorer = () => {
         })
     }
 
+    const handleAddNode = (newNode: FileNode, parentId: string | null) => {
+        const updateArchives = [...fileTree]
+
+        if (!parentId) {
+            updateArchives.push(newNode)
+            setFileTree(updateArchives)
+            return
+        }
+
+        const updateNodeChild = (nodes: FileNode[]): boolean => {
+            for (let i = 0; i < nodes.length; i++) {
+                const actualNode = nodes[i]
+
+                if (actualNode.id === parentId) {
+                    if (actualNode.type === "folder") {
+                        if (!actualNode.children) {
+                            actualNode.children = []
+                        }
+                        actualNode.children.push(newNode)
+                        return true
+                    }
+                    return false
+                }
+                if (actualNode.children && updateNodeChild(actualNode.children)) {
+                    return true
+                }
+            }
+            return false
+        }
+
+        updateNodeChild(updateArchives)
+        setFileTree(updateArchives)
+    }
+
     return (
         <>
             <div className="flex h-screen bg-gray-900 text-gray-100">
@@ -95,6 +129,7 @@ const Explorer = () => {
                             onFileSelect={handleFileSelect}
                             selectedFile={selectedFile}
                             onRename={handleRename}
+                            onAddNode={handleAddNode}
                         />
                     </div>
                 </div>

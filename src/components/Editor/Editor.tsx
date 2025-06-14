@@ -9,6 +9,7 @@ const Editor = () => {
 
     const [words, setWords] = React.useState(0)
     const [chars, setChars] = React.useState(0)
+    const textareaRef = React.useRef<HTMLTextAreaElement>(null)
 
     const getWordsCount = (string: string) => {
         return string.match(/(\w)/g)?.length
@@ -25,6 +26,17 @@ const Editor = () => {
         setWords(getWordsCount(value) || 0)
         setChars(getCharsCount(value))
     }
+
+    React.useEffect(() => {
+        if (textareaRef.current) {
+            const element = textareaRef.current
+            const nearBottom = element.scrollHeight - element.clientHeight - element.scrollTop < 100
+
+            if (nearBottom) {
+                element.scrollTop = element.scrollHeight
+            }
+        }
+    }, [markdown])
 
     // fix style btn
     // const downloadFile = () => {
@@ -49,11 +61,13 @@ const Editor = () => {
                         {words} words {chars} characters
                     </Badge>
                 </div>
-                <div className="flex-1 p-4">
+                <div className="flex flex-col h-full">
                     <textarea
+                        ref={textareaRef}
                         value={markdown}
                         onChange={editMarkdown}
                         className="w-full h-full bg-transparent border-none outline-none resize-none font-mono text-sm leading-relaxed text-gray-100 placeholder-gray-500"
+                        style={{ scrollBehavior: 'smooth' }}
                         placeholder="Write here..."
                     />
                 </div>

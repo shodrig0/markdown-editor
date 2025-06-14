@@ -14,9 +14,11 @@ export interface FileTreeProps {
 
 export interface TreeNodeProps {
     node: FileNode
-    level: number
-    onFileSelect: (node: FileNode) => void
+    level?: number
+    onFileSelect: (file: FileNode) => void
     selectedFile: FileNode | null
-    onRename: (id: string, newName: string) => void
+    onRename: (nodeId: string, newName: string) => void
     nodeId: string
+    onFolderFocus?: (node: FileNode) => void
+    focusedFolderId?: string | null
 }

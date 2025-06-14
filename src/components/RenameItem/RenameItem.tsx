@@ -1,17 +1,7 @@
 import { useState } from "react"
+import type { RenameItemProps } from "../../utils/renameItemProps"
 
-/**
- * is it necessary?
- */
-
-type Props = {
-    name: string
-    onRename: (newName: string) => void
-    selected: boolean
-    onClick: () => void
-}
-
-const FileItem: React.FC<Props> = ({ name, onRename, selected, onClick }) => {
+const RenameItem: React.FC<RenameItemProps> = ({ name, onRename, selected, onClick }) => {
     const [editItem, setEditItem] = useState<boolean>(false)
     const [value, setValue] = useState<string>(name)
 
@@ -55,4 +45,4 @@ const FileItem: React.FC<Props> = ({ name, onRename, selected, onClick }) => {
     )
 }
 
-export default FileItem
+export default RenameItem
